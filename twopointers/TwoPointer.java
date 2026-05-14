@@ -54,26 +54,60 @@
 
 // optimised approach.
 
-import java.util.Collections;
-import java.util.List;
+// import java.util.Collections;
+// import java.util.List;
 
-class Solution {
-    public int countPairs(List<Integer> nums, int target) {
+// class Solution {
+// public int countPairs(List<Integer> nums, int target) {
 
-        Collections.sort(nums);
-        int count = 0;
-        int left = 0;
-        int right = nums.size() - 1;
+// Collections.sort(nums);
+// int count = 0;
+// int left = 0;
+// int right = nums.size() - 1;
 
-        while (left < right) {
-            int sum = nums.get(left) + nums.get(right);
-            if (sum < target) {
-                count += (right - left);
-                left++;
-            } else {
-                right--;
-            }
+// while (left < right) {
+// int sum = nums.get(left) + nums.get(right);
+// if (sum < target) {
+// count += (right - left);
+// left++;
+// } else {
+// right--;
+// }
+// }
+// return count;
+// }
+// }
+
+// number of distinct averges.
+// hasmap is for key value pairs. and hashset is for onyl one value.
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+class TwoPointer {
+    public static int distinctAverages(int[] nums) {
+        Arrays.sort(nums);
+
+        int min = 0;
+        int max = nums.length - 1;
+
+        Set<Double> averages = new HashSet<>();
+        while (min < max) {
+
+            double average_numbers = (nums[min] + nums[max]) / 2.0;
+
+            averages.add(average_numbers);
+
+            min++;
+            max--;
         }
-        return count;
+        return averages.size();
+    }
+
+    public static void main(String args[]) {
+        int[] nums = { 4, 1, 4, 0, 3, 5 };
+        int result = distinctAverages(nums);
+        System.out.println(
+                "result is :" + result);
     }
 }
