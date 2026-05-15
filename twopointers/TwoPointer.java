@@ -157,3 +157,30 @@
 // System.out.println("result is :" + result);
 // }
 // }
+
+// OPTIMIZED SOULTION.
+
+import java.util.HashSet;
+
+class TwoPointer {
+    public static int largestPostive(int nums[]) {
+
+        HashSet<Integer> double_num = new HashSet<>();
+        int maxValue = -1;
+
+        for (int num : nums) {
+            if (double_num.contains(-num)) {
+                maxValue = Math.max(maxValue, Math.abs(num));
+            }
+            double_num.add(num);
+        }
+
+        return maxValue;
+    }
+
+    public static void main(String args[]) {
+        int nums[] = { -1, 10, 6, 7, -7, 1 };
+        int result = largestPostive(nums);
+        System.out.println("largest postive number is :" + result);
+    }
+}
