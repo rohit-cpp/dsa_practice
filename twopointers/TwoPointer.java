@@ -80,34 +80,80 @@
 
 // number of distinct averges.
 // hasmap is for key value pairs. and hashset is for onyl one value.
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+// import java.util.Arrays;
+// import java.util.HashSet;
+// import java.util.Set;
 
-class TwoPointer {
-    public static int distinctAverages(int[] nums) {
-        Arrays.sort(nums);
+// class TwoPointer {
+// public static int distinctAverages(int[] nums) {
+// Arrays.sort(nums);
 
-        int min = 0;
-        int max = nums.length - 1;
+// int min = 0;
+// int max = nums.length - 1;
 
-        Set<Double> averages = new HashSet<>();
-        while (min < max) {
+// Set<Double> averages = new HashSet<>();
+// while (min < max) {
 
-            double average_numbers = (nums[min] + nums[max]) / 2.0;
+// double average_numbers = (nums[min] + nums[max]) / 2.0;
 
-            averages.add(average_numbers);
+// averages.add(average_numbers);
 
-            min++;
-            max--;
-        }
-        return averages.size();
-    }
+// min++;
+// max--;
+// }
+// return averages.size();
+// }
 
-    public static void main(String args[]) {
-        int[] nums = { 4, 1, 4, 0, 3, 5 };
-        int result = distinctAverages(nums);
-        System.out.println(
-                "result is :" + result);
-    }
-}
+// public static void main(String args[]) {
+// int[] nums = { 4, 1, 4, 0, 3, 5 };
+// int result = distinctAverages(nums);
+// System.out.println(
+// "result is :" + result);
+// }
+// }
+
+// // new question find largest positive integer that exist with negative
+// import java.util.Arrays;
+// import java.util.HashSet;
+// import java.util.Set;
+
+// import java.util.Arrays;
+
+// class TwoPointer {
+// public static int largestpositiveinteger(int[] nums) {
+// // 1. Sort the array so negatives are on the left and positives on the right
+// Arrays.sort(nums);
+
+// int min = 0;
+// int max = nums.length - 1;
+
+// // 2. Use a single while loop
+// while (min < max) {
+// int sum = nums[min] + nums[max];
+
+// if (sum == 0) {
+// // If sum is 0, we found our pair!
+// // Since 'max' starts from the end, this is guaranteed to be the largest
+// // possible positive integer.
+// return nums[max];
+// } else if (sum < 0) {
+// // If sum is negative, the negative number is too large in magnitude.
+// // Move the left pointer to the right to get a smaller negative number.
+// min++;
+// } else {
+// // If sum is positive, the positive number is too large.
+// // Move the right pointer to the left to get a smaller positive number.
+// max--;
+// }
+// }
+
+// // 3. Return -1 if no such pair exists
+// return -1;
+// }
+
+// public static void main(String args[]) {
+// int[] nums = { -1, 10, 6, 7, -7, 1 };
+// int result = largestpositiveinteger(nums);
+// System.out.println("result is :" + result);
+// }
+// }
