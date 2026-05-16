@@ -160,27 +160,53 @@
 
 // OPTIMIZED SOULTION.
 
+// import java.util.HashSet;
+
+// class TwoPointer {
+// public static int largestPostive(int nums[]) {
+
+// HashSet<Integer> double_num = new HashSet<>();
+// int maxValue = -1;
+
+// for (int num : nums) {
+// if (double_num.contains(-num)) {
+// maxValue = Math.max(maxValue, Math.abs(num));
+// }
+// double_num.add(num);
+// }
+
+// return maxValue;
+// }
+
+// public static void main(String args[]) {
+// int nums[] = { -1, 10, 6, 7, -7, 1 };
+// int result = largestPostive(nums);
+// System.out.println("largest postive number is :" + result);
+// }
+// }
 import java.util.HashSet;
 
 class TwoPointer {
-    public static int largestPostive(int nums[]) {
+    public static boolean findSubarrays(int nums[]) {
 
-        HashSet<Integer> double_num = new HashSet<>();
-        int maxValue = -1;
+        HashSet<Integer> box = new HashSet<>();
 
-        for (int num : nums) {
-            if (double_num.contains(-num)) {
-                maxValue = Math.max(maxValue, Math.abs(num));
+        for (int i = 0; i < nums.length - 1; i++) {
+            int sum = nums[i] + nums[i + 1];
+
+            if (box.contains(sum)) {
+                return true;
+            } else {
+                box.add(sum);
             }
-            double_num.add(num);
-        }
 
-        return maxValue;
+        }
+        return false;
     }
 
     public static void main(String args[]) {
-        int nums[] = { -1, 10, 6, 7, -7, 1 };
-        int result = largestPostive(nums);
+        int nums[] = { 4, 2, 4 };
+        boolean result = findSubarrays(nums);
         System.out.println("largest postive number is :" + result);
     }
 }
