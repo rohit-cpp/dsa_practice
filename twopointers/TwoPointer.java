@@ -184,29 +184,52 @@
 // System.out.println("largest postive number is :" + result);
 // }
 // }
+// import java.util.HashSet;
+
+// class TwoPointer {
+// public static boolean findSubarrays(int nums[]) {
+
+// HashSet<Integer> box = new HashSet<>();
+
+// for (int i = 0; i < nums.length - 1; i++) {
+// int sum = nums[i] + nums[i + 1];
+
+// if (box.contains(sum)) {
+// return true;
+// } else {
+// box.add(sum);
+// }
+
+// }
+// return false;
+// }
+
+// public static void main(String args[]) {
+// int nums[] = { 4, 2, 4 };
+// boolean result = findSubarrays(nums);
+// System.out.println("largest postive number is :" + result);
+// }
+// }
+
 import java.util.HashSet;
 
-class TwoPointer {
-    public static boolean findSubarrays(int nums[]) {
+class Solution {
+    public int arithmeticTriplets(int[] nums, int diff) {
+        int count = 0;
+        HashSet<Integer> set = new HashSet<>();
 
-        HashSet<Integer> box = new HashSet<>();
-
-        for (int i = 0; i < nums.length - 1; i++) {
-            int sum = nums[i] + nums[i + 1];
-
-            if (box.contains(sum)) {
-                return true;
-            } else {
-                box.add(sum);
-            }
-
+        // Add all elements to the hash set
+        for (int num : nums) {
+            set.add(num);
         }
-        return false;
-    }
 
-    public static void main(String args[]) {
-        int nums[] = { 4, 2, 4 };
-        boolean result = findSubarrays(nums);
-        System.out.println("largest postive number is :" + result);
+        // Check if both required complements exist for each number
+        for (int num : nums) {
+            if (set.contains(num - diff) && set.contains(num + diff)) {
+                count++;
+            }
+        }
+
+        return count;
     }
 }
