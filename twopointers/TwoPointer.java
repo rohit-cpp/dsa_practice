@@ -211,25 +211,42 @@
 // }
 // }
 
+// import java.util.HashSet;
+
+// class Solution {
+//     public int arithmeticTriplets(int[] nums, int diff) {
+//         int count = 0;
+//         HashSet<Integer> set = new HashSet<>();
+
+//         // Add all elements to the hash set
+//         for (int num : nums) {
+//             set.add(num);
+//         }
+
+//         // Check if both required complements exist for each number
+//         for (int num : nums) {
+//             if (set.contains(num - diff) && set.contains(num + diff)) {
+//                 count++;
+//             }
+//         }
+
+//         return count;
+//     }
+// }
+
 import java.util.HashSet;
 
-class Solution {
-    public int arithmeticTriplets(int[] nums, int diff) {
-        int count = 0;
-        HashSet<Integer> set = new HashSet<>();
+class TwoPointer {
+    public char repeatedCharacter(String s) {
+        HashSet<Character> seen = new HashSet<>();
 
-        // Add all elements to the hash set
-        for (int num : nums) {
-            set.add(num);
-        }
-
-        // Check if both required complements exist for each number
-        for (int num : nums) {
-            if (set.contains(num - diff) && set.contains(num + diff)) {
-                count++;
+        for (char c : s.toCharArray()) {
+            if (seen.contains(c)) {
+                return c;
             }
+            seen.add(c);
         }
 
-        return count;
+        return ' ';
     }
 }
