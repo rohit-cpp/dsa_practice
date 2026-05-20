@@ -214,62 +214,62 @@
 // import java.util.HashSet;
 
 // class Solution {
-//     public int arithmeticTriplets(int[] nums, int diff) {
-//         int count = 0;
-//         HashSet<Integer> set = new HashSet<>();
+// public int arithmeticTriplets(int[] nums, int diff) {
+// int count = 0;
+// HashSet<Integer> set = new HashSet<>();
 
-//         // Add all elements to the hash set
-//         for (int num : nums) {
-//             set.add(num);
-//         }
+// // Add all elements to the hash set
+// for (int num : nums) {
+// set.add(num);
+// }
 
-//         // Check if both required complements exist for each number
-//         for (int num : nums) {
-//             if (set.contains(num - diff) && set.contains(num + diff)) {
-//                 count++;
-//             }
-//         }
+// // Check if both required complements exist for each number
+// for (int num : nums) {
+// if (set.contains(num - diff) && set.contains(num + diff)) {
+// count++;
+// }
+// }
 
-//         return count;
-//     }
+// return count;
+// }
 // }
 
 // import java.util.HashSet;
 
 // class TwoPointer {
-//     public char repeatedCharacter(String s) {
-//         HashSet<Character> seen = new HashSet<>();
+// public char repeatedCharacter(String s) {
+// HashSet<Character> seen = new HashSet<>();
 
-//         for (char c : s.toCharArray()) {
-//             if (seen.contains(c)) {
-//                 return c;
-//             }
-//             seen.add(c);
-//         }
-
-//         return ' ';
-//     }
+// for (char c : s.toCharArray()) {
+// if (seen.contains(c)) {
+// return c;
+// }
+// seen.add(c);
 // }
 
-class TwoPointer {
-    public static String Reverse(String[] s) {
-        int left = 0;
-        int right = s.length - 1;
+// return ' ';
+// }
+// }
 
-        while (left < right) {
-            String temp = s[left];
-            s[left] = s[right];
-            s[right] = temp;
+// class TwoPointer {
+// public static String Reverse(String[] s) {
+// int left = 0;
+// int right = s.length - 1;
 
-            left++;
-            right--;
-        }
-        return String.join("", s);
-    }
+// while (left < right) {
+// String temp = s[left];
+// s[left] = s[right];
+// s[right] = temp;
 
-    public static void main(String[] args) {
-        String[] s = { "h", "e", "l", "l", "o" };
-        String result = Reverse(s);
-        System.out.println("Reverse String is : " + result);
-    }
-}
+// left++;
+// right--;
+// }
+// return String.join("", s);
+// }
+
+// public static void main(String[] args) {
+// String[] s = { "h", "e", "l", "l", "o" };
+// String result = Reverse(s);
+// System.out.println("Reverse String is : " + result);
+// }
+// }
