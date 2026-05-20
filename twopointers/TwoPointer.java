@@ -234,19 +234,42 @@
 //     }
 // }
 
-import java.util.HashSet;
+// import java.util.HashSet;
+
+// class TwoPointer {
+//     public char repeatedCharacter(String s) {
+//         HashSet<Character> seen = new HashSet<>();
+
+//         for (char c : s.toCharArray()) {
+//             if (seen.contains(c)) {
+//                 return c;
+//             }
+//             seen.add(c);
+//         }
+
+//         return ' ';
+//     }
+// }
 
 class TwoPointer {
-    public char repeatedCharacter(String s) {
-        HashSet<Character> seen = new HashSet<>();
+    public static String Reverse(String[] s) {
+        int left = 0;
+        int right = s.length - 1;
 
-        for (char c : s.toCharArray()) {
-            if (seen.contains(c)) {
-                return c;
-            }
-            seen.add(c);
+        while (left < right) {
+            String temp = s[left];
+            s[left] = s[right];
+            s[right] = temp;
+
+            left++;
+            right--;
         }
+        return String.join("", s);
+    }
 
-        return ' ';
+    public static void main(String[] args) {
+        String[] s = { "h", "e", "l", "l", "o" };
+        String result = Reverse(s);
+        System.out.println("Reverse String is : " + result);
     }
 }
