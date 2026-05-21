@@ -1,8 +1,3 @@
-// package slidingWindow;
-
-// public class new {
-
-// }
 
 // It will be in Array and Strings only it will not be in the linkd list.
 // if in question has subarray or substring then it will be sliding window.
