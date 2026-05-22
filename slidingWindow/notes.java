@@ -20,3 +20,51 @@
 // Then we need to take fixed window
 
 // and if the size or length is not given then we need to take dynamic.
+
+// Step 1. Find out the pattern Sliding window by chcek above requiremnts.
+// Step 2. Find out the window is fixed or dynamic.
+// Step 3. Find out the information to what to find out in the window.
+// Step 4. Fidn out the information for next sliding window also.
+
+// ok so for brute for of this sliding window problems.
+// first we take subarrays then we fidn sum fo all the elements in the subarray
+// one by one and
+// then comapre with the max sum.
+// so here time complexity will be number of subarray will be n-k; and we need
+// to do soem opeariton liek sum. then we will itrate for all the elemtns inside
+// the subarray. so work per subarray is k times. so time compelxty is
+// 0(n-k * k) and obsuvly subraay will not be bigger than n right. so 0(nk -
+// kk). so drop kk. and TIME COMPELXTIY WILL BE 0(NK);
+
+// optimal solution
+// now for the subarray instad of itrating we cna just substract the left-1. and
+// add right +1 to the sum. SO the time compexity will be number of subarray
+// will be n-k; and work per subarry reduced to only 2 times one is remvoe form
+// left. and then addign in the right . SO the TIME COMPEXITY WILL BE 0(N-K * 2)
+// WHICH IS 0(N-K) that is 0(N) beacuse n will always grater than k.
+
+class Solution {
+
+    public int maxSubarraySum(int[] arr, int k) {
+
+        int currentSum = 0;
+
+        for (int i = 0; i < k; i++) {
+            currentSum += arr[i];
+        }
+
+        int maxSum = currentSum;
+
+        for (int i = 0; i < arr.length - k; i++) {
+
+            currentSum -= arr[i];
+            currentSum += arr[i + k];
+
+            if (currentSum > maxSum) {
+                maxSum = currentSum;
+            }
+
+        }
+        return maxSum;
+    }
+}
