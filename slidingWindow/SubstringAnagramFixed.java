@@ -120,35 +120,73 @@
 
 // Substrign anagram
 
-import java.util.HashSet;
-import java.util.Set;
+// import java.util.HashSet;
+// import java.util.Set;
 
-public class SubstringAnagram {
+// public class SubstringAnagram {
+//     public static boolean hasSubstringAnagram(String s, String anagram) {
+//         if (s == null || anagram == null || s.length() < anagram.length()) {
+//             return false;
+//         }
+
+//         int k = anagram.length();
+//         Set<Character> windowSet = new HashSet<>();
+//         Set<Character> anagramSet = new HashSet<>();
+
+//         // Initialize the sets
+//         for (int i = 0; i < k; i++) {
+//             windowSet.add(s.charAt(i));
+//             anagramSet.add(anagram.charAt(i));
+//         }
+
+//         if (windowSet.equals(anagramSet)) {
+//             return true;
+//         }
+
+//         // Sliding window loop
+//         for (int i = 0; i < s.length() - k; i++) {
+//             windowSet.remove(s.charAt(i));
+//             windowSet.add(s.charAt(i + k));
+
+//             if (windowSet.equals(anagramSet)) {
+//                 return true;
+//             }
+//         }
+
+//         return false;
+//     }
+// }
+
+// optimised solution
+
+import java.util.Arrays;
+
+public class SubstringAnagramFixed {
     public static boolean hasSubstringAnagram(String s, String anagram) {
         if (s == null || anagram == null || s.length() < anagram.length()) {
             return false;
         }
 
         int k = anagram.length();
-        Set<Character> windowSet = new HashSet<>();
-        Set<Character> anagramSet = new HashSet<>();
+        int[] anagramCounts = new int[26];
+        int[] windowCounts = new int[26];
 
-        // Initialize the sets
+        // Populate initial frequencies for the anagram and first window
         for (int i = 0; i < k; i++) {
-            windowSet.add(s.charAt(i));
-            anagramSet.add(anagram.charAt(i));
+            anagramCounts[anagram.charAt(i) - 'a']++;
+            windowCounts[s.charAt(i) - 'a']++;
         }
 
-        if (windowSet.equals(anagramSet)) {
+        if (Arrays.equals(windowCounts, anagramCounts)) {
             return true;
         }
 
-        // Sliding window loop
+        // Correctly slide the window by updating frequencies
         for (int i = 0; i < s.length() - k; i++) {
-            windowSet.remove(s.charAt(i));
-            windowSet.add(s.charAt(i + k));
+            windowCounts[s.charAt(i) - 'a']--; // Drop outgoing character safely
+            windowCounts[s.charAt(i + k) - 'a']++; // Add incoming character safely
 
-            if (windowSet.equals(anagramSet)) {
+            if (Arrays.equals(windowCounts, anagramCounts)) {
                 return true;
             }
         }
