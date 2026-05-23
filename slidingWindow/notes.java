@@ -68,3 +68,36 @@
 // return maxSum;
 // }
 // }
+
+//
+// for the varaible size window. First if the condition then accrodign to that
+// conditon we move the start and end arr[i]. if the condition staitsfty that is
+// if we got sum less than target. then move end++. and if target is big then we
+// need to shrink window that is move start++.
+// Minimum Size Subarray Sum
+
+// public static int[] findSubarraySum(int[] nums, int targetSum) {
+// if (nums == null || nums.length == 0) {
+// return new int[] { -1, -1 }; // Return invalid indices if empty
+// }
+
+// int start = 0;
+// int windowSum = 0;
+
+// for (int end = 0; end < nums.length; end++) {
+// windowSum += nums[end];
+
+// // Shrink the window from the left if the sum exceeds the target
+// while (windowSum > targetSum && start <= end) {
+// windowSum -= nums[start];
+// start += 1;
+// }
+
+// // If target is found, return the start and end indices
+// if (windowSum == targetSum) {
+// return new int[] { start, end };
+// }
+// }
+
+// return new int[] { -1, -1 }; // Return -1s if no matching subarray exists
+// }

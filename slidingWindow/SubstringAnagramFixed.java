@@ -196,30 +196,30 @@
 // }
 // }
 
-//this is the variable size window problem.   Minimum Size Subarray Sum
+// this is the variable size window problem. Minimum Size Subarray Sum
 
-public static int[] findSubarraySum(int[] nums, int targetSum) {
-    if (nums == null || nums.length == 0) {
-        return new int[] { -1, -1 }; // Return invalid indices if empty
-    }
+// public static int[] findSubarraySum(int[] nums, int targetSum) {
+// if (nums == null || nums.length == 0) {
+// return new int[] { -1, -1 }; // Return invalid indices if empty
+// }
 
-    int start = 0;
-    int windowSum = 0;
+// int start = 0;
+// int windowSum = 0;
 
-    for (int end = 0; end < nums.length; end++) {
-        windowSum += nums[end];
+// for (int end = 0; end < nums.length; end++) {
+// windowSum += nums[end];
 
-        // Shrink the window from the left if the sum exceeds the target
-        while (windowSum > targetSum && start <= end) {
-            windowSum -= nums[start];
-            start += 1;
-        }
+// // Shrink the window from the left if the sum exceeds the target
+// while (windowSum > targetSum && start <= end) {
+// windowSum -= nums[start];
+// start += 1;
+// }
 
-        // If target is found, return the start and end indices
-        if (windowSum == targetSum) {
-            return new int[] { start, end };
-        }
-    }
+// // If target is found, return the start and end indices
+// if (windowSum == targetSum) {
+// return new int[] { start, end };
+// }
+// }
 
-    return new int[] { -1, -1 }; // Return -1s if no matching subarray exists
-}
+// return new int[] { -1, -1 }; // Return -1s if no matching subarray exists
+// }
