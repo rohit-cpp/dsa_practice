@@ -43,28 +43,28 @@
 // left. and then addign in the right . SO the TIME COMPEXITY WILL BE 0(N-K * 2)
 // WHICH IS 0(N-K) that is 0(N) beacuse n will always grater than k.
 
-class Solution {
+// class Solution {
 
-    public int maxSubarraySum(int[] arr, int k) {
+// public int maxSubarraySum(int[] arr, int k) {
 
-        int currentSum = 0;
+// int currentSum = 0;
 
-        for (int i = 0; i < k; i++) {
-            currentSum += arr[i];
-        }
+// for (int i = 0; i < k; i++) {
+// currentSum += arr[i];
+// }
 
-        int maxSum = currentSum;
+// int maxSum = currentSum;
 
-        for (int i = 0; i < arr.length - k; i++) {
+// for (int i = 0; i < arr.length - k; i++) {
 
-            currentSum -= arr[i];
-            currentSum += arr[i + k];
+// currentSum -= arr[i];
+// currentSum += arr[i + k];
 
-            if (currentSum > maxSum) {
-                maxSum = currentSum;
-            }
+// if (currentSum > maxSum) {
+// maxSum = currentSum;
+// }
 
-        }
-        return maxSum;
-    }
-}
+// }
+// return maxSum;
+// }
+// }
