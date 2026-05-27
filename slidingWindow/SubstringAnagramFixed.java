@@ -224,26 +224,59 @@
 // return new int[] { -1, -1 }; // Return -1s if no matching subarray exists
 // }
 
-class Solution {
-    public double findMaxAverage(int[] nums, int k) {
-        // Changed to long for consistency and safety
-        long currentSum = 0;
+// class Solution {
+//     public double findMaxAverage(int[] nums, int k) {
+//         // Changed to long for consistency and safety
+//         long currentSum = 0;
 
+//         for (int i = 0; i < k; i++) {
+//             currentSum += nums[i];
+//         }
+
+//         long maxSum = currentSum;
+
+//         for (int i = 0; i < nums.length - k; i++) {
+//             currentSum = currentSum - nums[i] + nums[i + k];
+
+//             // Changed from < to > to find the MAXIMUM sum
+//             if (currentSum > maxSum) {
+//                 maxSum = currentSum;
+//             }
+//         }
+
+//         return (double) maxSum / k;
+//     }
+// }
+
+class SubstringAnagramFixed {
+    public static int equaltothreshold(int[] nums, int k, int t)
+
+    {
+        int count = 0;
+        int currentSum = 0;
+        int targetSum = t * k;
         for (int i = 0; i < k; i++) {
             currentSum += nums[i];
         }
-
-        long maxSum = currentSum;
-
-        for (int i = 0; i < nums.length - k; i++) {
-            currentSum = currentSum - nums[i] + nums[i + k];
-
-            // Changed from < to > to find the MAXIMUM sum
-            if (currentSum > maxSum) {
-                maxSum = currentSum;
-            }
+        if (currentSum >= t) {
+            count++;
         }
 
-        return (double) maxSum / k;
+        for (int i = 0; i < nums.length - k; i++) {
+            currentSum = currentSum - nums[i] + nums[k + i];
+
+            if (currentSum >= targetSum) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { 2, 2, 2, 2, 5, 5, 8 };
+        int k = 3;
+        int threshold = 4;
+        int result = equaltothreshold(arr, k, threshold);
+        System.out.println("result :" + result);
     }
 }
