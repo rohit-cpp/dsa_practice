@@ -328,102 +328,152 @@
 // }
 
 // class Solution {
-//     public int maxVowels(String s, int k) {
-//         int maxVowels = 0;
-//         int currentVowels = 0;
+// public int maxVowels(String s, int k) {
+// int maxVowels = 0;
+// int currentVowels = 0;
 
-//         // Boolean array for O(1) vowel lookups
-//         boolean[] isVowel = new boolean[128];
-//         isVowel['a'] = true;
-//         isVowel['e'] = true;
-//         isVowel['i'] = true;
-//         isVowel['o'] = true;
-//         isVowel['u'] = true;
+// // Boolean array for O(1) vowel lookups
+// boolean[] isVowel = new boolean[128];
+// isVowel['a'] = true;
+// isVowel['e'] = true;
+// isVowel['i'] = true;
+// isVowel['o'] = true;
+// isVowel['u'] = true;
 
-//         // 1. Initialize the first window of size k
-//         for (int i = 0; i < k; i++) {
-//             if (isVowel[s.charAt(i)]) {
-//                 currentVowels++;
-//             }
-//         }
-
-//         maxVowels = currentVowels;
-
-//         // 2. Slide the window (i tracks the character dropping out)
-//         for (int i = 0; i < s.length() - k; i++) {
-//             // Add the new character entering the right side of the window
-//             if (isVowel[s.charAt(i + k)]) {
-//                 currentVowels++;
-//             }
-//             // Remove the old character leaving the left side of the window
-//             if (isVowel[s.charAt(i)]) {
-//                 currentVowels--;
-//             }
-
-//             // Update max if the current window has more vowels
-//             maxVowels = Math.max(maxVowels, currentVowels);
-
-//             // Early exit optimization
-//             if (maxVowels == k) {
-//                 return maxVowels;
-//             }
-//         }
-
-//         return maxVowels;
-//     }
+// // 1. Initialize the first window of size k
+// for (int i = 0; i < k; i++) {
+// if (isVowel[s.charAt(i)]) {
+// currentVowels++;
+// }
 // }
 
+// maxVowels = currentVowels;
+
+// // 2. Slide the window (i tracks the character dropping out)
+// for (int i = 0; i < s.length() - k; i++) {
+// // Add the new character entering the right side of the window
+// if (isVowel[s.charAt(i + k)]) {
+// currentVowels++;
+// }
+// // Remove the old character leaving the left side of the window
+// if (isVowel[s.charAt(i)]) {
+// currentVowels--;
+// }
+
+// // Update max if the current window has more vowels
+// maxVowels = Math.max(maxVowels, currentVowels);
+
+// // Early exit optimization
+// if (maxVowels == k) {
+// return maxVowels;
+// }
+// }
+
+// return maxVowels;
+// }
+// }
+
+// class Solution {
+// public long maximumSubarraySum(int[] nums, int k) {
+// long maxSum = 0;
+// long currentSum = 0;
+// int distinctCount = 0;
+
+// // Frequency array. Constraints say max value in nums is 10^5
+// int[] freq = new int[100005];
+
+// // 1. Initialize the first window of size k
+// for (int i = 0; i < k; i++) {
+// int val = nums[i];
+// currentSum += val;
+
+// // If this is the first time seeing this number, increment distinct count
+// if (freq[val] == 0) {
+// distinctCount++;
+// }
+// freq[val]++;
+// }
+
+// // Check if the very first window is valid
+// if (distinctCount == k) {
+// maxSum = currentSum;
+// }
+
+// // 2. Slide the window (i tracks the old element dropping out)
+// for (int i = 0; i < nums.length - k; i++) {
+// int entering = nums[i + k];
+// int leaving = nums[i];
+
+// // Add the new element entering the right side
+// currentSum += entering;
+// if (freq[entering] == 0) {
+// distinctCount++;
+// }
+// freq[entering]++;
+
+// // Remove the old element leaving the left side
+// currentSum -= leaving;
+// freq[leaving]--;
+// if (freq[leaving] == 0) {
+// distinctCount--;
+// }
+
+// // If the current window has exactly k distinct elements, it's valid
+// if (distinctCount == k) {
+// maxSum = Math.max(maxSum, currentSum);
+// }
+// }
+
+// return maxSum;
+// }
+// }
+
+import java.util.Arrays;
+
 class Solution {
-    public long maximumSubarraySum(int[] nums, int k) {
-        long maxSum = 0;
-        long currentSum = 0;
-        int distinctCount = 0;
+    public int[] getAverages(int[] nums, int k) {
+        int n = nums.length;
+        int[] res = new int[n];
 
-        // Frequency array. Constraints say max value in nums is 10^5
-        int[] freq = new int[100005];
+        // 1. The "-1" Trick: Pre-fill the array with -1
+        // This automatically handles all edge elements that don't have enough
+        // neighbors.
+        Arrays.fill(res, -1);
 
-        // 1. Initialize the first window of size k
-        for (int i = 0; i < k; i++) {
-            int val = nums[i];
-            currentSum += val;
+        // A full window consists of 'k' left elements + 1 center element + 'k' right
+        // elements
+        int windowSize = 2 * k + 1;
 
-            // If this is the first time seeing this number, increment distinct count
-            if (freq[val] == 0) {
-                distinctCount++;
-            }
-            freq[val]++;
+        // Early exit: If the array isn't even big enough to form one valid window,
+        // return the -1s
+        if (windowSize > n) {
+            return res;
         }
 
-        // Check if the very first window is valid
-        if (distinctCount == k) {
-            maxSum = currentSum;
+        // MUST use long to prevent integer overflow when summing large arrays
+        long windowSum = 0;
+
+        // 2. Build the first window (from index 0 to windowSize - 1)
+        for (int i = 0; i < windowSize; i++) {
+            windowSum += nums[i];
         }
 
-        // 2. Slide the window (i tracks the old element dropping out)
-        for (int i = 0; i < nums.length - k; i++) {
-            int entering = nums[i + k];
-            int leaving = nums[i];
+        // The center of the very first window is exactly at index 'k'
+        res[k] = (int) (windowSum / windowSize);
 
-            // Add the new element entering the right side
-            currentSum += entering;
-            if (freq[entering] == 0) {
-                distinctCount++;
-            }
-            freq[entering]++;
+        // 3. Slide the window across the rest of the array
+        // 'i' represents the new element entering the right side of the window
+        for (int i = windowSize; i < n; i++) {
 
-            // Remove the old element leaving the left side
-            currentSum -= leaving;
-            freq[leaving]--;
-            if (freq[leaving] == 0) {
-                distinctCount--;
-            }
+            // Add the entering element (nums[i]) and subtract the leaving element (nums[i -
+            // windowSize])
+            windowSum = windowSum - nums[i - windowSize] + nums[i];
 
-            // If the current window has exactly k distinct elements, it's valid
-            if (distinctCount == k) {
-                maxSum = Math.max(maxSum, currentSum);
-            }
+            // If 'i' is the rightmost edge of our current window,
+            // stepping back by 'k' places us exactly at the center index.
+            res[i - k] = (int) (windowSum / windowSize);
         }
 
-        return maxSum;
+        return res;
     }
 }
