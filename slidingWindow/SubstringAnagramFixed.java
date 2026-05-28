@@ -327,49 +327,103 @@
 // }
 // }
 
+// class Solution {
+//     public int maxVowels(String s, int k) {
+//         int maxVowels = 0;
+//         int currentVowels = 0;
+
+//         // Boolean array for O(1) vowel lookups
+//         boolean[] isVowel = new boolean[128];
+//         isVowel['a'] = true;
+//         isVowel['e'] = true;
+//         isVowel['i'] = true;
+//         isVowel['o'] = true;
+//         isVowel['u'] = true;
+
+//         // 1. Initialize the first window of size k
+//         for (int i = 0; i < k; i++) {
+//             if (isVowel[s.charAt(i)]) {
+//                 currentVowels++;
+//             }
+//         }
+
+//         maxVowels = currentVowels;
+
+//         // 2. Slide the window (i tracks the character dropping out)
+//         for (int i = 0; i < s.length() - k; i++) {
+//             // Add the new character entering the right side of the window
+//             if (isVowel[s.charAt(i + k)]) {
+//                 currentVowels++;
+//             }
+//             // Remove the old character leaving the left side of the window
+//             if (isVowel[s.charAt(i)]) {
+//                 currentVowels--;
+//             }
+
+//             // Update max if the current window has more vowels
+//             maxVowels = Math.max(maxVowels, currentVowels);
+
+//             // Early exit optimization
+//             if (maxVowels == k) {
+//                 return maxVowels;
+//             }
+//         }
+
+//         return maxVowels;
+//     }
+// }
 
 class Solution {
-    public int maxVowels(String s, int k) {
-        int maxVowels = 0;
-        int currentVowels = 0;
+    public long maximumSubarraySum(int[] nums, int k) {
+        long maxSum = 0;
+        long currentSum = 0;
+        int distinctCount = 0;
 
-        // Boolean array for O(1) vowel lookups
-        boolean[] isVowel = new boolean[128];
-        isVowel['a'] = true;
-        isVowel['e'] = true;
-        isVowel['i'] = true;
-        isVowel['o'] = true;
-        isVowel['u'] = true;
+        // Frequency array. Constraints say max value in nums is 10^5
+        int[] freq = new int[100005];
 
         // 1. Initialize the first window of size k
         for (int i = 0; i < k; i++) {
-            if (isVowel[s.charAt(i)]) {
-                currentVowels++;
-            }
-        }
-        
-        maxVowels = currentVowels;
+            int val = nums[i];
+            currentSum += val;
 
-        // 2. Slide the window (i tracks the character dropping out)
-        for (int i = 0; i < s.length() - k; i++) {
-            // Add the new character entering the right side of the window
-            if (isVowel[s.charAt(i + k)]) {
-                currentVowels++;
+            // If this is the first time seeing this number, increment distinct count
+            if (freq[val] == 0) {
+                distinctCount++;
             }
-            // Remove the old character leaving the left side of the window
-            if (isVowel[s.charAt(i)]) {
-                currentVowels--;
-            }
-            
-            // Update max if the current window has more vowels
-            maxVowels = Math.max(maxVowels, currentVowels);
-            
-            // Early exit optimization
-            if (maxVowels == k) {
-                return maxVowels;
-            }
+            freq[val]++;
         }
 
-        return maxVowels;
+        // Check if the very first window is valid
+        if (distinctCount == k) {
+            maxSum = currentSum;
+        }
+
+        // 2. Slide the window (i tracks the old element dropping out)
+        for (int i = 0; i < nums.length - k; i++) {
+            int entering = nums[i + k];
+            int leaving = nums[i];
+
+            // Add the new element entering the right side
+            currentSum += entering;
+            if (freq[entering] == 0) {
+                distinctCount++;
+            }
+            freq[entering]++;
+
+            // Remove the old element leaving the left side
+            currentSum -= leaving;
+            freq[leaving]--;
+            if (freq[leaving] == 0) {
+                distinctCount--;
+            }
+
+            // If the current window has exactly k distinct elements, it's valid
+            if (distinctCount == k) {
+                maxSum = Math.max(maxSum, currentSum);
+            }
+        }
+
+        return maxSum;
     }
 }
