@@ -3,6 +3,13 @@
 A comprehensive collection of common Java coding interview questions categorized by topic, with clean solutions and links to practice on LeetCode and GeeksforGeeks.
 
 ---
+First Step. this are the basic problems. But when you start to do DSA. then Keep this thigns in mind.
+1. Do no directy jump on any questions on the leedcode. First understnad the concept or pattern of that questions or watch a tutorial of it then 
+chek its code. then try to solve that problem on your own. without looking in the solution.
+2. As you solve any question by the above method then try to solve other question on your own of same pattern and of same sub pattern. 
+3. Do not watch videos first, of any random questions. First pattern then solution.
+4. Try to exaplin out loud that question after solving it.  it you cant explain then you are not able to solve it.
+5. Also you will be fully able to understand the problem only if you had dry run it. (best approach). first get the dry run of the sultion form the gemini or anyhitng.  
 
 ## 📋 Table of Contents
 
