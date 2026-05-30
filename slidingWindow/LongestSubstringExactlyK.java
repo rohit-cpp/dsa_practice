@@ -431,113 +431,158 @@
 // import java.util.Arrays;
 
 // class Solution {
-//     public int[] getAverages(int[] nums, int k) {
-//         int n = nums.length;
-//         int[] res = new int[n];
+// public int[] getAverages(int[] nums, int k) {
+// int n = nums.length;
+// int[] res = new int[n];
 
-//         // 1. The "-1" Trick: Pre-fill the array with -1
-//         // This automatically handles all edge elements that don't have enough
-//         // neighbors.
-//         Arrays.fill(res, -1);
+// // 1. The "-1" Trick: Pre-fill the array with -1
+// // This automatically handles all edge elements that don't have enough
+// // neighbors.
+// Arrays.fill(res, -1);
 
-//         // A full window consists of 'k' left elements + 1 center element + 'k' right
-//         // elements
-//         int windowSize = 2 * k + 1;
+// // A full window consists of 'k' left elements + 1 center element + 'k' right
+// // elements
+// int windowSize = 2 * k + 1;
 
-//         // Early exit: If the array isn't even big enough to form one valid window,
-//         // return the -1s
-//         if (windowSize > n) {
-//             return res;
-//         }
-
-//         // MUST use long to prevent integer overflow when summing large arrays
-//         long windowSum = 0;
-
-//         // 2. Build the first window (from index 0 to windowSize - 1)
-//         for (int i = 0; i < windowSize; i++) {
-//             windowSum += nums[i];
-//         }
-
-//         // The center of the very first window is exactly at index 'k'
-//         res[k] = (int) (windowSum / windowSize);
-
-//         // 3. Slide the window across the rest of the array
-//         // 'i' represents the new element entering the right side of the window
-//         for (int i = windowSize; i < n; i++) {
-
-//             // Add the entering element (nums[i]) and subtract the leaving element (nums[i -
-//             // windowSize])
-//             windowSum = windowSum - nums[i - windowSize] + nums[i];
-
-//             // If 'i' is the rightmost edge of our current window,
-//             // stepping back by 'k' places us exactly at the center index.
-//             res[i - k] = (int) (windowSum / windowSize);
-//         }
-
-//         return res;
-//     }
+// // Early exit: If the array isn't even big enough to form one valid window,
+// // return the -1s
+// if (windowSize > n) {
+// return res;
 // }
 
-import java.util.HashMap;
-import java.util.Map;
+// // MUST use long to prevent integer overflow when summing large arrays
+// long windowSum = 0;
 
-public class LongestSubstringExactlyK {
+// // 2. Build the first window (from index 0 to windowSize - 1)
+// for (int i = 0; i < windowSize; i++) {
+// windowSum += nums[i];
+// }
 
-    public static int longestSubstringWithExactlyKDistinct(String s, int k) {
-        // Edge cases: if the string is empty, shorter than k, or we want 0 characters
-        if (s == null || s.length() == 0 || k == 0 || s.length() < k) {
-            return -1;
-        }
+// // The center of the very first window is exactly at index 'k'
+// res[k] = (int) (windowSum / windowSize);
 
-        // 1. THE NEW NOTEPAD: A HashMap
-        // The 'Key' is the Character, the 'Value' is how many times we've seen it.
-        Map<Character, Integer> charFrequency = new HashMap<>();
+// // 3. Slide the window across the rest of the array
+// // 'i' represents the new element entering the right side of the window
+// for (int i = windowSize; i < n; i++) {
 
-        int maxLength = -1; // Start at -1
-        int left = 0; // Left finger
+// // Add the entering element (nums[i]) and subtract the leaving element
+// (nums[i -
+// // windowSize])
+// windowSum = windowSum - nums[i - windowSize] + nums[i];
 
-        // The 'right' variable is our Right Finger
-        for (int right = 0; right < s.length(); right++) {
-            char rightChar = s.charAt(right);
+// // If 'i' is the rightmost edge of our current window,
+// // stepping back by 'k' places us exactly at the center index.
+// res[i - k] = (int) (windowSum / windowSize);
+// }
 
-            // 2. ADD TO MAP: Put the letter in the map.
-            // getOrDefault says: "If we haven't seen this letter before, assume its count
-            // was 0, then add 1."
-            charFrequency.put(rightChar, charFrequency.getOrDefault(rightChar, 0) + 1);
+// return res;
+// }
+// }
 
-            // 3. RULE CHECK: The map's .size() tells us exactly how many unique letters we
-            // have!
-            while (charFrequency.size() > k) {
-                char leftChar = s.charAt(left);
+// import java.util.HashMap;
+// import java.util.Map;
 
-                // Erase one tally mark for the left letter
-                charFrequency.put(leftChar, charFrequency.get(leftChar) - 1);
+// public class LongestSubstringExactlyK {
 
-                // 4. REMOVE FROM MAP: If the tally hits 0, completely delete the letter from
-                // our map
-                if (charFrequency.get(leftChar) == 0) {
-                    charFrequency.remove(leftChar);
-                }
+// public static int longestSubstringWithExactlyKDistinct(String s, int k) {
+// // Edge cases: if the string is empty, shorter than k, or we want 0
+// characters
+// if (s == null || s.length() == 0 || k == 0 || s.length() < k) {
+// return -1;
+// }
 
-                // Move the left finger forward
+// // 1. THE NEW NOTEPAD: A HashMap
+// // The 'Key' is the Character, the 'Value' is how many times we've seen it.
+// Map<Character, Integer> charFrequency = new HashMap<>();
+
+// int maxLength = -1; // Start at -1
+// int left = 0; // Left finger
+
+// // The 'right' variable is our Right Finger
+// for (int right = 0; right < s.length(); right++) {
+// char rightChar = s.charAt(right);
+
+// // 2. ADD TO MAP: Put the letter in the map.
+// // getOrDefault says: "If we haven't seen this letter before, assume its
+// count
+// // was 0, then add 1."
+// charFrequency.put(rightChar, charFrequency.getOrDefault(rightChar, 0) + 1);
+
+// // 3. RULE CHECK: The map's .size() tells us exactly how many unique letters
+// we
+// // have!
+// while (charFrequency.size() > k) {
+// char leftChar = s.charAt(left);
+
+// // Erase one tally mark for the left letter
+// charFrequency.put(leftChar, charFrequency.get(leftChar) - 1);
+
+// // 4. REMOVE FROM MAP: If the tally hits 0, completely delete the letter from
+// // our map
+// if (charFrequency.get(leftChar) == 0) {
+// charFrequency.remove(leftChar);
+// }
+
+// // Move the left finger forward
+// left++;
+// }
+
+// // 5. THE SCORE CHECK
+// if (charFrequency.size() == k) {
+// maxLength = Math.max(maxLength, right - left + 1);
+// }
+// }
+
+// return maxLength;
+// }
+
+// public static void main(String[] args) {
+// String str = "eceba";
+// int k = 2;
+
+// int result = longestSubstringWithExactlyKDistinct(str, k);
+// System.out.println("Longest streak with EXACTLY " + k + " unique letters: " +
+// result);
+// // Output will still be 3
+// }
+// }
+
+// 
+import java.util.Arrays;
+
+class Solution {
+    public int maxFrequency(int[] nums, int k) {
+        // Step 1: Sort the array
+        Arrays.sort(nums);
+        
+        int left = 0;
+        long currentSum = 0; // Use long to prevent integer overflow
+        int maxFreq = 0;
+        
+        // Step 2: Use a sliding window [left, right]
+        for (int right = 0; right < nums.length; right++) {
+            // Add the current element to our window's sum
+            currentSum += nums[right];
+            
+            // Calculate the cost to make all numbers in the window equal to nums[right]
+            // We cast to long to prevent overflow during multiplication
+            long windowSize = right - left + 1;
+            long cost = (windowSize * nums[right]) - currentSum;
+            
+            // Step 3: If the cost is greater than k, the window is invalid.
+            // We need to shrink it from the left.
+            while (cost > k) {
+                currentSum -= nums[left];
                 left++;
+                // Recalculate window size and cost for the while loop condition
+                windowSize = right - left + 1;
+                cost = (windowSize * nums[right]) - currentSum;
             }
-
-            // 5. THE SCORE CHECK
-            if (charFrequency.size() == k) {
-                maxLength = Math.max(maxLength, right - left + 1);
-            }
+            
+            // Step 4: Update the maximum frequency found so far
+            maxFreq = Math.max(maxFreq, right - left + 1);
         }
-
-        return maxLength;
-    }
-
-    public static void main(String[] args) {
-        String str = "eceba";
-        int k = 2;
-
-        int result = longestSubstringWithExactlyKDistinct(str, k);
-        System.out.println("Longest streak with EXACTLY " + k + " unique letters: " + result);
-        // Output will still be 3
+        
+        return maxFreq;
     }
 }
