@@ -23,6 +23,159 @@ chek its code. then try to solve that problem on your own. without looking in th
 - [Contributing](#-contributing)
 
 ---
+Here is the **combined list of unique questions** from both lists (duplicates removed), organized by topic.
+
+# Numbers & Mathematics
+
+1. Reverse a Number
+2. Fibonacci Series
+3. GCD (HCF) of Two Numbers
+4. LCM of Two Numbers
+5. Perfect Number
+6. Leap Year
+7. Prime Number
+8. Armstrong Number
+9. Palindrome Number
+10. Factorial of a Number
+11. Strong Number
+12. Count Digits in a Number
+13. Sum of Digits
+14. Power of a Number (without `pow()`)
+15. Prime Factors
+16. Binary to Decimal Conversion
+17. Decimal to Binary Conversion
+18. Octal to Decimal Conversion
+19. Hexadecimal to Decimal Conversion
+20. Area of a Circle
+21. Handshakes Problem
+22. Quadrant Selection
+23. Square Root Using Binary Search
+
+---
+
+# Strings
+
+24. Reverse a String
+25. Palindrome String
+26. Anagram Check
+27. Length of String Without Built-in Functions
+28. Count Vowels and Consonants
+29. Remove Vowels
+30. Toggle Case
+31. ASCII Value of a Character
+32. Replace Substring
+33. Wildcard Character Matching (`*`, `?`)
+34. First Non-Repeating Character
+35. Count Occurrences of a Character
+36. Remove All Spaces from String
+37. Longest Common Prefix
+38. String Compression (`aaabbc → a3b2c1`)
+39. Check if String Contains Only Digits
+40. Reverse Words in a Sentence
+41. Count Words in a String
+42. Balanced Parentheses
+43. Longest Palindromic Substring
+44. Replace Spaces with `%20`
+
+---
+
+# Arrays
+
+45. Largest Element in Array
+46. Smallest Element in Array
+47. Second Largest Element
+48. Second Smallest Element
+49. Reverse an Array
+50. Sort an Array (Bubble Sort)
+51. Selection Sort
+52. Insertion Sort
+53. Merge Sort
+54. Sum of Array Elements
+55. Frequency of Elements
+56. Distinct Elements in Array
+57. Move All Zeros to End
+58. Find Duplicates in Array
+59. Rotate Array by K Positions
+60. Kadane’s Algorithm (Maximum Subarray Sum)
+61. Two Sum Problem
+62. Merge Two Sorted Arrays
+63. Find Missing Number (1 to N)
+64. Find Pair with Given Sum
+65. Check if Array is Sorted
+66. Remove Duplicates from Sorted Array
+67. Leaders in an Array
+68. Equilibrium Index
+69. Symmetric Pairs
+70. Find Kth Largest/Smallest Element
+
+---
+
+# Searching
+
+71. Linear Search
+72. Binary Search
+73. Search Element in Rotated Sorted Array
+74. First and Last Occurrence of an Element
+
+---
+
+# Special Array / Matrix Problems
+
+75. Sort 0s, 1s and 2s (Dutch National Flag)
+76. Count Comparisons in Bubble Sort
+77. Matrix Addition
+78. Matrix Subtraction
+79. Matrix Multiplication
+80. Transpose of a Matrix
+81. Spiral Traversal of Matrix
+82. Median of Sorted Matrix
+
+---
+
+# Linked List
+
+83. Reverse a Linked List
+84. Find Middle of Linked List
+85. Detect Loop in Linked List
+86. Delete Nth Node from End
+87. Merge Two Sorted Linked Lists
+
+---
+
+# Stack & Queue
+
+88. Implement Stack Using Array
+89. Implement Queue Using Array
+90. Implement Stack Using Queues
+91. Next Greater Element Using Stack
+92. Valid Parentheses Using Stack
+
+---
+
+# Patterns
+
+93. Pyramid Pattern
+94. Diamond Pattern
+95. Pascal’s Triangle
+
+---
+
+## Recommended Learning Order
+
+If your goal is **TCS, Infosys, Wipro, Cognizant, Capgemini, Accenture, HCL, Tech Mahindra, and product-company interviews**, solve them in this order:
+
+1. Numbers & Mathematics (1–23)
+2. Strings (24–44)
+3. Arrays (45–70)
+4. Searching & Sorting (71–76)
+5. Matrix Problems (77–82)
+6. Linked List (83–87)
+7. Stack & Queue (88–92)
+8. Patterns (93–95)
+
+These **95 questions** form a very strong beginner-to-intermediate DSA preparation list and cover most frequently asked coding questions in service-based company assessments and many interview rounds.
+
+
 
 ## Category 1: Basic Number-Based Questions
 
