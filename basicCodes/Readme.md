@@ -9,7 +9,7 @@ chek its code. then try to solve that problem on your own. without looking in th
 2. As you solve any question by the above method then try to solve other question on your own of same pattern and of same sub pattern. 
 3. Do not watch videos first, of any random questions. First pattern then solution.
 4. Try to exaplin out loud that question after solving it.  it you cant explain then you are not able to solve it.
-5. Also you will be fully able to understand the problem only if you had dry run it. (best approach). first get the dry run of the sultion form the gemini or anyhitng.  
+5. Also you will be fully able to understand the problem only if you had dry run it. (best approach). first get the dry run of the sultion form the gemini or anyhitng.  this is jsut for staritng.
 
 ---
 
