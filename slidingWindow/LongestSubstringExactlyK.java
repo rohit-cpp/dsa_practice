@@ -547,6 +547,17 @@
 // }
 // }
 
+// public static void main(String[] args) {
+// String str = "eceba";
+// int k = 2;
+
+// int result = longestSubstringWithExactlyKDistinct(str, k);
+// System.out.println("Longest streak with EXACTLY " + k + " unique letters: " +
+// result);
+// // Output will still be 3
+// }
+// }
+
 // 
 import java.util.Arrays;
 
