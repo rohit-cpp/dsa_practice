@@ -565,21 +565,21 @@ class Solution {
     public int maxFrequency(int[] nums, int k) {
         // Step 1: Sort the array
         Arrays.sort(nums);
-        
+
         int left = 0;
         long currentSum = 0; // Use long to prevent integer overflow
         int maxFreq = 0;
-        
+
         // Step 2: Use a sliding window [left, right]
         for (int right = 0; right < nums.length; right++) {
             // Add the current element to our window's sum
             currentSum += nums[right];
-            
+
             // Calculate the cost to make all numbers in the window equal to nums[right]
             // We cast to long to prevent overflow during multiplication
             long windowSize = right - left + 1;
             long cost = (windowSize * nums[right]) - currentSum;
-            
+
             // Step 3: If the cost is greater than k, the window is invalid.
             // We need to shrink it from the left.
             while (cost > k) {
@@ -589,11 +589,46 @@ class Solution {
                 windowSize = right - left + 1;
                 cost = (windowSize * nums[right]) - currentSum;
             }
-            
+
             // Step 4: Update the maximum frequency found so far
             maxFreq = Math.max(maxFreq, right - left + 1);
         }
-        
+
         return maxFreq;
+    }
+}
+
+class Solution {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(p);
+        queue.offer(q);
+
+        while (!queue.isEmpty()) {
+
+            TreeNode node1 = queue.poll();
+            TreeNode node2 = queue.poll();
+
+            if (node1 == null && node2 == null) {
+                continue;
+            }
+
+            if (node1 == null || node2 == null) {
+                return false;
+            }
+
+            if (node1.val != node2.val) {
+                return false;
+            }
+
+            queue.offer(node1.left);
+            queue.offer(node2.left);
+
+            queue.offer(node1.right);
+            queue.offer(node2.right);
+        }
+
+        return true;
     }
 }
