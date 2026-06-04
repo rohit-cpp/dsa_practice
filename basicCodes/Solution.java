@@ -24,27 +24,50 @@
 //     }
 // }
 
+// class Solution {
+//     public double myPow(double x, int n) {
+//         long N = n; // handle Integer.MIN_VALUE
+
+//         if (N < 0) {
+//             x = 1 / x;
+//             N = -N;
+//         }
+
+//         double result = 1;
+
+//         while (N > 0) {
+//             // If exponent is odd
+//             if ((N & 1) == 1) {
+//                 result *= x;
+//             }
+
+//             x *= x; // square the base
+//             N /= 2; // halve the exponent
+//         }
+
+//         return result;
+//     }
+// }
+
 class Solution {
-    public double myPow(double x, int n) {
-        long N = n; // handle Integer.MIN_VALUE
+    public String convertToTitle(int columnNumber) {
+        StringBuilder result = new StringBuilder();
 
-        if (N < 0) {
-            x = 1 / x;
-            N = -N;
+        while (columnNumber > 0) {
+            // Shift down by 1 to make it 0-indexed (0 to 25)
+            columnNumber--;
+
+            // Get the current character's offset
+            int remainder = columnNumber % 26;
+
+            // Convert offset to the actual character and append
+            result.append((char) (remainder + 'A'));
+
+            // Divide by 26 to process the next character
+            columnNumber /= 26;
         }
 
-        double result = 1;
-
-        while (N > 0) {
-            // If exponent is odd
-            if ((N & 1) == 1) {
-                result *= x;
-            }
-
-            x *= x; // square the base
-            N /= 2; // halve the exponent
-        }
-
-        return result;
+        // Reverse the accumulated characters and return as a String
+        return result.reverse().toString();
     }
 }
