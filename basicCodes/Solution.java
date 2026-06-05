@@ -49,25 +49,47 @@
 //     }
 // }
 
+// class Solution {
+//     public String convertToTitle(int columnNumber) {
+//         StringBuilder result = new StringBuilder();
+
+//         while (columnNumber > 0) {
+//             // Shift down by 1 to make it 0-indexed (0 to 25)
+//             columnNumber--;
+
+//             // Get the current character's offset
+//             int remainder = columnNumber % 26;
+
+//             // Convert offset to the actual character and append
+//             result.append((char) (remainder + 'A'));
+
+//             // Divide by 26 to process the next character
+//             columnNumber /= 26;
+//         }
+
+//         // Reverse the accumulated characters and return as a String
+//         return result.reverse().toString();
+//     }
+// }
+
 class Solution {
-    public String convertToTitle(int columnNumber) {
-        StringBuilder result = new StringBuilder();
+    public int reverse(int x) {
+        int rev = 0;
+        while (x != 0) {
+            int lastDigit = x % 10;
+            x /= 10;
 
-        while (columnNumber > 0) {
-            // Shift down by 1 to make it 0-indexed (0 to 25)
-            columnNumber--;
+            // Changed '=' to '==' for comparison
+            if ((rev > Integer.MAX_VALUE / 10) || ((rev == Integer.MAX_VALUE / 10) && lastDigit > 7)) {
+                return 0;
+            }
+            // Changed '=' to '==' for comparison
+            if ((rev < Integer.MIN_VALUE / 10) || ((rev == Integer.MIN_VALUE / 10) && lastDigit < -8)) {
+                return 0;
+            }
 
-            // Get the current character's offset
-            int remainder = columnNumber % 26;
-
-            // Convert offset to the actual character and append
-            result.append((char) (remainder + 'A'));
-
-            // Divide by 26 to process the next character
-            columnNumber /= 26;
+            rev = rev * 10 + lastDigit;
         }
-
-        // Reverse the accumulated characters and return as a String
-        return result.reverse().toString();
+        return rev;
     }
 }
