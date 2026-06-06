@@ -98,23 +98,72 @@
 // }
 // }
 
+// class Solution {
+//     public int fib(int n) {
+//         // Base cases
+//         if (n <= 1) {
+//             return n;
+//         }
+
+//         int prev2 = 0; // F(0)
+//         int prev1 = 1; // F(1)
+//         int current = 0;
+
+//         for (int i = 2; i <= n; i++) {
+//             current = prev1 + prev2; // F(n) = F(n-1) + F(n-2)
+//             prev2 = prev1; // Move prev2 forward
+//             prev1 = current; // Move prev1 forward
+//         }
+
+//         return current;
+//     }
+// }
+
+
+import java.util.*;
+
 class Solution {
-    public int fib(int n) {
-        // Base cases
-        if (n <= 1) {
-            return n;
+
+    public List<String> restoreIpAddresses(String s) {
+        List<String> result = new ArrayList<>();
+
+        if (s.length() < 4 || s.length() > 12) {
+            return result;
         }
 
-        int prev2 = 0; // F(0)
-        int prev1 = 1; // F(1)
-        int current = 0;
+        backtrack(s, 0, new ArrayList<>(), result);
+        return result;
+    }
 
-        for (int i = 2; i <= n; i++) {
-            current = prev1 + prev2; // F(n) = F(n-1) + F(n-2)
-            prev2 = prev1; // Move prev2 forward
-            prev1 = current; // Move prev1 forward
+    private void backtrack(String s, int index,
+                           List<String> parts,
+                           List<String> result) {
+
+        // If 4 parts are formed
+        if (parts.size() == 4) {
+            if (index == s.length()) {
+                result.add(String.join(".", parts));
+            }
+            return;
         }
 
-        return current;
+        // Try segments of length 1, 2, and 3
+        for (int len = 1; len <= 3 && index + len <= s.length(); len++) {
+
+            String segment = s.substring(index, index + len);
+
+            // Leading zero check
+            if (segment.length() > 1 && segment.charAt(0) == '0') {
+                break;
+            }
+
+            int value = Integer.parseInt(segment);
+
+            if (value <= 255) {
+                parts.add(segment);
+                backtrack(s, index + len, parts, result);
+                parts.remove(parts.size() - 1); // backtrack
+            }
+        }
     }
 }
