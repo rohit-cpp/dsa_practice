@@ -119,51 +119,73 @@
 //     }
 // }
 
+// import java.util.*;
 
-import java.util.*;
+// class Solution {
+
+//     public List<String> restoreIpAddresses(String s) {
+//         List<String> result = new ArrayList<>();
+
+//         if (s.length() < 4 || s.length() > 12) {
+//             return result;
+//         }
+
+//         backtrack(s, 0, new ArrayList<>(), result);
+//         return result;
+//     }
+
+//     private void backtrack(String s, int index,
+//                            List<String> parts,
+//                            List<String> result) {
+
+//         // If 4 parts are formed
+//         if (parts.size() == 4) {
+//             if (index == s.length()) {
+//                 result.add(String.join(".", parts));
+//             }
+//             return;
+//         }
+
+//         // Try segments of length 1, 2, and 3
+//         for (int len = 1; len <= 3 && index + len <= s.length(); len++) {
+
+//             String segment = s.substring(index, index + len);
+
+//             // Leading zero check
+//             if (segment.length() > 1 && segment.charAt(0) == '0') {
+//                 break;
+//             }
+
+//             int value = Integer.parseInt(segment);
+
+//             if (value <= 255) {
+//                 parts.add(segment);
+//                 backtrack(s, index + len, parts, result);
+//                 parts.remove(parts.size() - 1); // backtrack
+//             }
+//         }
+//     }
+// }
+
+// using Array integer. 
 
 class Solution {
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+        int[] letterCounts = new int[26];
 
-    public List<String> restoreIpAddresses(String s) {
-        List<String> result = new ArrayList<>();
-
-        if (s.length() < 4 || s.length() > 12) {
-            return result;
+        for (int i = 0; i < s.length(); i++) {
+            letterCounts[s.charAt(i) - 'a']++;
+            letterCounts[t.charAt(i) - 'a']--;
         }
 
-        backtrack(s, 0, new ArrayList<>(), result);
-        return result;
-    }
-
-    private void backtrack(String s, int index,
-                           List<String> parts,
-                           List<String> result) {
-
-        // If 4 parts are formed
-        if (parts.size() == 4) {
-            if (index == s.length()) {
-                result.add(String.join(".", parts));
-            }
-            return;
-        }
-
-        // Try segments of length 1, 2, and 3
-        for (int len = 1; len <= 3 && index + len <= s.length(); len++) {
-
-            String segment = s.substring(index, index + len);
-
-            // Leading zero check
-            if (segment.length() > 1 && segment.charAt(0) == '0') {
-                break;
-            }
-
-            int value = Integer.parseInt(segment);
-
-            if (value <= 255) {
-                parts.add(segment);
-                backtrack(s, index + len, parts, result);
-                parts.remove(parts.size() - 1); // backtrack
+        for (int count : letterCounts) {
+            if (count != 0) {
+                return false;
             }
         }
+        return true;
     }
 }
