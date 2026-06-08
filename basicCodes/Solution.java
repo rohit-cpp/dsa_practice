@@ -210,20 +210,46 @@
 //     }
 // }
 
+// class Solution {
+//     public int lengthOfLastWord(String s) {
+
+//         int lastChar = s.length() - 1;
+//         int count = 0;
+
+//         for (int i = lastChar; i >= 0; i--) {
+//             if (s.charAt(i) != ' ') {
+//                 count++;
+//             } else if (count > 0) {
+//                 break;
+//             }
+//         }
+//         return count;
+//     }
+
+// }
+
 class Solution {
-    public int lengthOfLastWord(String s) {
 
-        int lastChar = s.length() - 1;
-        int count = 0;
+    static void checkString(String s) {
+        int vowels = 0;
 
-        for (int i = lastChar; i >= 0; i--) {
-            if (s.charAt(i) != ' ') {
-                count++;
-            } else if (count > 0) {
-                break;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+                vowels++;
             }
         }
-        return count;
-    }
 
+        int consonents = s.length() - vowels;
+
+        // FIX: Added "ln" to the end of print statements
+        if (vowels > consonents) {
+            System.out.println("Yes");
+        } else if (vowels < consonents) {
+            System.out.println("No");
+        } else {
+            System.out.println("Same");
+        }
+    }
 }
