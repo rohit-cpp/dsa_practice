@@ -190,28 +190,40 @@
 //     }
 // }
 
+//   if(s.length() != t.length()){
+//     return false;
+//    }
+//    HashMap<Character, Integer> maps = new HashMap<>();
+//    HashMap<Character, Integer> mapt = new HashMap<>();
 
+// for(int i = 0; i< s.length(); i++){
+//     char c = s.charAt(i);
+//     maps.put(c,maps.getOrDefault(c,0)+1);
+// }
 
+// for(int i = 0; i< t.length(); i++){
+//     char c = t.charAt(i);
+//     mapt.put(c,mapt.getOrDefault(c,0)+1);
+// }
 
+// return maps.equals(mapt);
+//     }
+// }
 
+class Solution {
+    public int lengthOfLastWord(String s) {
 
+        int lastChar = s.length() - 1;
+        int count = 0;
 
-  if(s.length() != t.length()){
-    return false;
-   }
-   HashMap<Character, Integer> maps = new HashMap<>();
-   HashMap<Character, Integer> mapt = new HashMap<>();
-
-for(int i = 0; i< s.length(); i++){
-    char c = s.charAt(i);
-    maps.put(c,maps.getOrDefault(c,0)+1);
-}
-
-for(int i = 0; i< t.length(); i++){
-    char c = t.charAt(i);
-    mapt.put(c,mapt.getOrDefault(c,0)+1);
-}
-
-return maps.equals(mapt);
+        for (int i = lastChar; i >= 0; i--) {
+            if (s.charAt(i) != ' ') {
+                count++;
+            } else if (count > 0) {
+                break;
+            }
+        }
+        return count;
     }
+
 }
