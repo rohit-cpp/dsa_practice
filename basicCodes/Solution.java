@@ -275,3 +275,23 @@
 //     // 4. Convert the builder back into a standard String
 //     return result.toString();
 // }
+
+class Solution {
+    public String toggleCase(String s) {
+        // code here
+        StringBuilder result = new StringBuilder(s.length());
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            if (Character.isUpperCase(c)) {
+                result.append(Character.toLowerCase(c));
+            } else if (Character.isLowerCase(c)) {
+                result.append(Character.toUpperCase(c));
+            } else {
+                result.append(c);
+            }
+        }
+        return result.toString();
+    }
+}
