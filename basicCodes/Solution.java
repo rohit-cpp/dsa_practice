@@ -99,157 +99,179 @@
 // }
 
 // class Solution {
-//     public int fib(int n) {
-//         // Base cases
-//         if (n <= 1) {
-//             return n;
-//         }
+// public int fib(int n) {
+// // Base cases
+// if (n <= 1) {
+// return n;
+// }
 
-//         int prev2 = 0; // F(0)
-//         int prev1 = 1; // F(1)
-//         int current = 0;
+// int prev2 = 0; // F(0)
+// int prev1 = 1; // F(1)
+// int current = 0;
 
-//         for (int i = 2; i <= n; i++) {
-//             current = prev1 + prev2; // F(n) = F(n-1) + F(n-2)
-//             prev2 = prev1; // Move prev2 forward
-//             prev1 = current; // Move prev1 forward
-//         }
+// for (int i = 2; i <= n; i++) {
+// current = prev1 + prev2; // F(n) = F(n-1) + F(n-2)
+// prev2 = prev1; // Move prev2 forward
+// prev1 = current; // Move prev1 forward
+// }
 
-//         return current;
-//     }
+// return current;
+// }
 // }
 
 // import java.util.*;
 
 // class Solution {
 
-//     public List<String> restoreIpAddresses(String s) {
-//         List<String> result = new ArrayList<>();
+// public List<String> restoreIpAddresses(String s) {
+// List<String> result = new ArrayList<>();
 
-//         if (s.length() < 4 || s.length() > 12) {
-//             return result;
-//         }
-
-//         backtrack(s, 0, new ArrayList<>(), result);
-//         return result;
-//     }
-
-//     private void backtrack(String s, int index,
-//                            List<String> parts,
-//                            List<String> result) {
-
-//         // If 4 parts are formed
-//         if (parts.size() == 4) {
-//             if (index == s.length()) {
-//                 result.add(String.join(".", parts));
-//             }
-//             return;
-//         }
-
-//         // Try segments of length 1, 2, and 3
-//         for (int len = 1; len <= 3 && index + len <= s.length(); len++) {
-
-//             String segment = s.substring(index, index + len);
-
-//             // Leading zero check
-//             if (segment.length() > 1 && segment.charAt(0) == '0') {
-//                 break;
-//             }
-
-//             int value = Integer.parseInt(segment);
-
-//             if (value <= 255) {
-//                 parts.add(segment);
-//                 backtrack(s, index + len, parts, result);
-//                 parts.remove(parts.size() - 1); // backtrack
-//             }
-//         }
-//     }
+// if (s.length() < 4 || s.length() > 12) {
+// return result;
 // }
 
-// using Array integer. 
+// backtrack(s, 0, new ArrayList<>(), result);
+// return result;
+// }
+
+// private void backtrack(String s, int index,
+// List<String> parts,
+// List<String> result) {
+
+// // If 4 parts are formed
+// if (parts.size() == 4) {
+// if (index == s.length()) {
+// result.add(String.join(".", parts));
+// }
+// return;
+// }
+
+// // Try segments of length 1, 2, and 3
+// for (int len = 1; len <= 3 && index + len <= s.length(); len++) {
+
+// String segment = s.substring(index, index + len);
+
+// // Leading zero check
+// if (segment.length() > 1 && segment.charAt(0) == '0') {
+// break;
+// }
+
+// int value = Integer.parseInt(segment);
+
+// if (value <= 255) {
+// parts.add(segment);
+// backtrack(s, index + len, parts, result);
+// parts.remove(parts.size() - 1); // backtrack
+// }
+// }
+// }
+// }
+
+// using Array integer.
 
 // class Solution {
-//     public boolean isAnagram(String s, String t) {
-//         if (s.length() != t.length()) {
-//             return false;
-//         }
-//         int[] letterCounts = new int[26];
+// public boolean isAnagram(String s, String t) {
+// if (s.length() != t.length()) {
+// return false;
+// }
+// int[] letterCounts = new int[26];
 
-//         for (int i = 0; i < s.length(); i++) {
-//             letterCounts[s.charAt(i) - 'a']++;
-//             letterCounts[t.charAt(i) - 'a']--;
-//         }
-
-//         for (int count : letterCounts) {
-//             if (count != 0) {
-//                 return false;
-//             }
-//         }
-//         return true;
-//     }
+// for (int i = 0; i < s.length(); i++) {
+// letterCounts[s.charAt(i) - 'a']++;
+// letterCounts[t.charAt(i) - 'a']--;
 // }
 
-//   if(s.length() != t.length()){
-//     return false;
-//    }
-//    HashMap<Character, Integer> maps = new HashMap<>();
-//    HashMap<Character, Integer> mapt = new HashMap<>();
+// for (int count : letterCounts) {
+// if (count != 0) {
+// return false;
+// }
+// }
+// return true;
+// }
+// }
+
+// if(s.length() != t.length()){
+// return false;
+// }
+// HashMap<Character, Integer> maps = new HashMap<>();
+// HashMap<Character, Integer> mapt = new HashMap<>();
 
 // for(int i = 0; i< s.length(); i++){
-//     char c = s.charAt(i);
-//     maps.put(c,maps.getOrDefault(c,0)+1);
+// char c = s.charAt(i);
+// maps.put(c,maps.getOrDefault(c,0)+1);
 // }
 
 // for(int i = 0; i< t.length(); i++){
-//     char c = t.charAt(i);
-//     mapt.put(c,mapt.getOrDefault(c,0)+1);
+// char c = t.charAt(i);
+// mapt.put(c,mapt.getOrDefault(c,0)+1);
 // }
 
 // return maps.equals(mapt);
-//     }
+// }
 // }
 
 // class Solution {
-//     public int lengthOfLastWord(String s) {
+// public int lengthOfLastWord(String s) {
 
-//         int lastChar = s.length() - 1;
-//         int count = 0;
+// int lastChar = s.length() - 1;
+// int count = 0;
 
-//         for (int i = lastChar; i >= 0; i--) {
-//             if (s.charAt(i) != ' ') {
-//                 count++;
-//             } else if (count > 0) {
-//                 break;
-//             }
-//         }
-//         return count;
-//     }
+// for (int i = lastChar; i >= 0; i--) {
+// if (s.charAt(i) != ' ') {
+// count++;
+// } else if (count > 0) {
+// break;
+// }
+// }
+// return count;
+// }
 
 // }
 
-class Solution {
+// class Solution {
 
-    static void checkString(String s) {
-        int vowels = 0;
+// static void checkString(String s) {
+// int vowels = 0;
 
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
+// for (int i = 0; i < s.length(); i++) {
+// char c = s.charAt(i);
 
-            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
-                vowels++;
-            }
-        }
+// if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+// vowels++;
+// }
+// }
 
-        int consonents = s.length() - vowels;
+// int consonents = s.length() - vowels;
 
-        // FIX: Added "ln" to the end of print statements
-        if (vowels > consonents) {
-            System.out.println("Yes");
-        } else if (vowels < consonents) {
-            System.out.println("No");
-        } else {
-            System.out.println("Same");
-        }
-    }
-}
+// // FIX: Added "ln" to the end of print statements
+// if (vowels > consonents) {
+// System.out.println("Yes");
+// } else if (vowels < consonents) {
+// System.out.println("No");
+// } else {
+// System.out.println("Same");
+// }
+// }
+// }
+
+// public String removeVowels(String s) {
+//     // 1. Create a StringBuilder to hold our final answer
+//     StringBuilder result = new StringBuilder();
+//     
+//     // 2. A reference string of all possible vowels
+//     String vowels = "aeiouAEIOU";
+
+//     for (int i = 0; i < s.length(); i++) {
+//         char c = s.charAt(i);
+//         
+//         // 3. .indexOf(c) returns -1 if the letter is NOT in the vowel
+// string.
+//         // If it's -1, it's a consonant, so we append it to our result!
+//         if (vowels.indexOf(c) == -1) {
+//             result.append(c);
+//         }
+//     }
+
+//     // 4. Convert the builder back into a standard String
+//     return result.toString();
+// }
