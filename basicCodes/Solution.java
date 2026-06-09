@@ -277,53 +277,52 @@
 // }
 
 // class Solution {
-//     public String toggleCase(String s) {
-//         // code here
-//         StringBuilder result = new StringBuilder(s.length());
+// public String toggleCase(String s) {
+// // code here
+// StringBuilder result = new StringBuilder(s.length());
 
-//         for (int i = 0; i < s.length(); i++) {
-//             char c = s.charAt(i);
+// for (int i = 0; i < s.length(); i++) {
+// char c = s.charAt(i);
 
-//             if (Character.isUpperCase(c)) {
-//                 result.append(Character.toLowerCase(c));
-//             } else if (Character.isLowerCase(c)) {
-//                 result.append(Character.toUpperCase(c));
-//             } else {
-//                 result.append(c);
-//             }
-//         }
-//         return result.toString();
-//     }
+// if (Character.isUpperCase(c)) {
+// result.append(Character.toLowerCase(c));
+// } else if (Character.isLowerCase(c)) {
+// result.append(Character.toUpperCase(c));
+// } else {
+// result.append(c);
+// }
+// }
+// return result.toString();
+// }
 // }
 
+// class Solution {
+// public String modifyString(String s) {
+// // Convert string to a char array for mutability
+// char[] chars = s.toCharArray();
+// int n = chars.length;
 
-class Solution {
-    public String modifyString(String s) {
-        // Convert string to a char array for mutability
-        char[] chars = s.toCharArray();
-        int n = chars.length;
-        
-        for (int i = 0; i < n; i++) {
-            if (chars[i] == '?') {
-                // We only need to check 'a', 'b', and 'c'
-                for (char candidate = 'a'; candidate <= 'c'; candidate++) {
-                    // Check left neighbor (if it exists)
-                    if (i > 0 && chars[i - 1] == candidate) {
-                        continue;
-                    }
-                    // Check right neighbor (if it exists)
-                    if (i < n - 1 && chars[i + 1] == candidate) {
-                        continue;
-                    }
-                    
-                    // If the candidate passed both checks, assign it and stop checking
-                    chars[i] = candidate;
-                    break;
-                }
-            }
-        }
-        
-        // Convert the modified char array back to a String
-        return new String(chars);
-    }
-}
+// for (int i = 0; i < n; i++) {
+// if (chars[i] == '?') {
+// // We only need to check 'a', 'b', and 'c'
+// for (char candidate = 'a'; candidate <= 'c'; candidate++) {
+// // Check left neighbor (if it exists)
+// if (i > 0 && chars[i - 1] == candidate) {
+// continue;
+// }
+// // Check right neighbor (if it exists)
+// if (i < n - 1 && chars[i + 1] == candidate) {
+// continue;
+// }
+
+// // If the candidate passed both checks, assign it and stop checking
+// chars[i] = candidate;
+// break;
+// }
+// }
+// }
+
+// // Convert the modified char array back to a String
+// return new String(chars);
+// }
+// }
